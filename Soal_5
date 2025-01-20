@@ -1,0 +1,18 @@
+const int pwmPin = 9; // Pin untuk output PWM
+const int period = 2000; // Periode dalam mikrodetik (μs), misalnya 2000 μs = 2 ms
+const int dutyCycle = 50; // Duty cycle dalam persen (%)
+
+void setup() {
+  pinMode(pwmPin, OUTPUT); // Setel pin PWM sebagai output
+}
+
+void loop() {
+  int highTime = (period * dutyCycle) / 100; // Waktu high dalam mikrodetik
+  int lowTime = period - highTime; // Waktu low dalam mikrodetik
+
+  digitalWrite(pwmPin, HIGH); // Setel pin PWM ke HIGH
+  delayMicroseconds(highTime); // Tunggu selama highTime
+
+  digitalWrite(pwmPin, LOW); // Setel pin PWM ke LOW
+  delayMicroseconds(lowTime); // Tunggu selama lowTime
+}
