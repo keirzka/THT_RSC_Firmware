@@ -1,0 +1,17 @@
+#include <Wire.h>
+
+void setup() {
+  Wire.begin(); // Inisialisasi komunikasi I2C
+  Serial.begin(9600); // Inisialisasi komunikasi serial untuk debugging
+}
+
+void loop() {
+  Wire.requestFrom(8, 6); // Minta 6 byte data dari perangkat I2C dengan alamat 8
+  
+  while (Wire.available()) { // Tunggu hingga data tersedia
+    char c = Wire.read(); // Baca byte dari perangkat I2C
+    Serial.print(c); // Tampilkan data ke Serial Monitor
+  }
+  
+  delay(1000); // Tunggu selama 1 detik sebelum melakukan pembacaan berikutnya
+}
