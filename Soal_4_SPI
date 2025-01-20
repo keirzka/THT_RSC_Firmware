@@ -1,0 +1,18 @@
+#include <SPI.h>
+
+void setup() {
+  Serial.begin(9600); // Inisialisasi komunikasi serial untuk debugging
+  SPI.begin(); // Inisialisasi komunikasi SPI
+  pinMode(SS, OUTPUT); // Set SS pin sebagai output
+  digitalWrite(SS, HIGH); // SS pin harus HIGH saat tidak digunakan
+}
+
+void loop() {
+  digitalWrite(SS, LOW); // Pilih perangkat SPI
+  byte response = SPI.transfer(0x42); // Transfer byte data ke perangkat SPI dan baca respons
+  digitalWrite(SS, HIGH); // Lepaskan perangkat SPI
+  
+  Serial.print("Response: ");
+  Serial.println(response); // Tampilkan respons ke Serial Monitor
+  
+  delay(1000); 
